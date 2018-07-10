@@ -31,7 +31,7 @@ do
 done
 
 dialog --infobox "Downloading and installing config files..." 4 60
-git clone --depth 1 https://github.com/lukesmithxyz/voidrice.git >/dev/null &&
+git clone --depth 1 https://github.com/moogypoog/archrice.git >/dev/null &&
 	rsync -va voidrice/ /home/$(whoami) >/dev/null &&
 	rm -rf voidrice >/dev/null
 
@@ -50,10 +50,6 @@ dialog --infobox "Creating LARBS Firefox profile..." 4 60
 git clone --depth 1 https://github.com/LukeSmithxyz/mozilla-larbs.git >/dev/null &&
 	rsync -r mozilla-larbs/firefox/larbs.default ~/.mozilla/firefox/ &&
 	rsync mozilla-larbs/firefox/profiles.ini ~/.mozilla/firefox/
-
-dialog --infobox "Preparing welcome message..." 4 50
-
-echo "exec_always --no-startup-id notify-send -i ~/.scripts/larbs.png '<b>Welcome to LARBS:</b> Press Super+F1 for the manual.' -t 10000"  >> /home/$(whoami)/.config/i3/config
 
 dialog --infobox "Reseting Pulseaudio..." 4 50
 killall pulseaudio >/dev/null

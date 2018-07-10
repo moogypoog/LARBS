@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pacman -S --noconfirm --needed dialog || { echo "Error at script start: Are you sure you're running this as the root user? Are you sure you're using an Arch-based distro? ;-) Are you sure you have an internet connection?"; exit; }
-dialog --title "Welcome!" --msgbox "Welcome to Luke's Auto-Rice Bootstrapping Script!\n\nThis script will automatically install a fully-featured i3wm Arch Linux desktop, which I use as my main machine.\n\n-Luke" 10 60
+dialog --title "Welcome!" --msgbox "Welcome to my fork of Lukes Auto-Rice Bootstrapping Script!\n\nThis script will automatically install a fully-featured i3wm Arch Linux desktop, which I use as my main machine.\n\n (Forked from LukeSmithXYZ)" 10 60
 
 name=$(dialog --no-cancel --inputbox "First, please enter a name for the user account." 10 60 3>&1 1>&2 2>&3 3>&1)
 
@@ -49,7 +49,7 @@ dialog --infobox "Refreshing Arch Keyring..." 4 40
 pacman --noconfirm -Sy archlinux-keyring >/dev/tty6
 
 dialog --infobox "Getting program list..." 4 40
-curl https://raw.githubusercontent.com/LukeSmithxyz/larbs/master/src/progs.csv > /tmp/progs.csv
+curl https://raw.githubusercontent.com/moogypoog/larbs/master/src/progs.csv > /tmp/progs.csv
 rm /tmp/aur_queue &>/dev/tty6
 count=$(cat /tmp/progs.csv | grep -G ",$let," | wc -l)
 n=0
@@ -66,8 +66,8 @@ dialog --infobox "Preparing the user script..." 4 40
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 cd /tmp
 if [ $1 = "devel" ]
-then curl https://raw.githubusercontent.com/LukeSmithxyz/larbs/devel/src/larbs_user.sh > /tmp/larbs_user.sh;
-else curl https://raw.githubusercontent.com/LukeSmithxyz/larbs/master/src/larbs_user.sh > /tmp/larbs_user.sh;
+then curl https://raw.githubusercontent.com/moogypoog/larbs/devel/src/larbs_user.sh > /tmp/larbs_user.sh;
+else curl https://raw.githubusercontent.com/moogypoog/larbs/master/src/larbs_user.sh > /tmp/larbs_user.sh;
 fi
 sudo -u $name bash /tmp/larbs_user.sh
 rm -f /tmp/larbs_user.sh
@@ -109,5 +109,5 @@ dialog --infobox "Updating sudoers file..." 4 40
 sed -e "/^%wheel.*ALL$/d" /etc/sudoers
 echo "%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart, /usr/bin/pacman -Syyu --noconfirm" >> /etc/sudoers
 
-dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\n\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"startx\" to start the graphical environment.\n\n-Luke" 12 80
+dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\n\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"startx\" to start the graphical environment.\n\n-Mew" 12 80
 clear

@@ -1,4 +1,7 @@
+This is simply a fork of Lukes amazing bootstrap scripts, redesigned to work for my configuration files.
+
 # Luke's Auto-Rice Bootstraping Scripts (LARBS)
+
 
 [Official Website: larbs.xyz](http://larbs.xyz)
 
